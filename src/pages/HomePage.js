@@ -6,7 +6,7 @@ import ProductList from "../components/ProductList"
 import Filter from "../components/Filter"
 import { HomeContextProvider } from '../context/HomeContext'
 
-function HomePage() {
+function HomePage(props) {
     const [clothesData, setClothesData] = useState([])
     useEffect(() => {
         fetchProducts().then(
@@ -21,7 +21,7 @@ function HomePage() {
             <Header />
             <Filter />
             <Box>
-                <ProductList clothesData={clothesData} setClothesData={setClothesData} />
+                <ProductList clothesData={clothesData} setClothesData={setClothesData} saved={props.saved}/>
             </Box>
         </HomeContextProvider>
     )

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Box} from "@mui/system"
 import ItemComponent from './ItemComponent'
 import { useHomeContext } from '../context/HomeContext'
@@ -9,13 +9,9 @@ import { fetchProducts } from '../fetchData'
 function ProductList(props) {
     const {clothesData, setClothesData} = props
     const {gender} = useHomeContext()
-    
-    // if (gender==="Show all" || gender === ""){
-        
-    // }
+    const [saved, setSaved] = useState([])
+
     const filteredProducts = gender==="Show all" ? clothesData : clothesData.filter(item => item.gender === gender)
-
-
 
     return (
         <Box sx={{display:"grid",  
