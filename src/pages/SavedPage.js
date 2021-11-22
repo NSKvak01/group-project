@@ -9,20 +9,21 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import ReplayIcon from '@mui/icons-material/Replay';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromSavedAction } from '../App';
+import { removeFromSavedAction } from '../redux/savedReducer';
 
 
-
-function SavedPage() {
+function SavedPage(props) {
     const history = useNavigate()
     const dispatch = useDispatch()
-    const saved = useSelector(state=>state)
+    const saved = useSelector(state=>state.saved)
 
-    useEffect(() => {
-        if (saved.length>0){
-            window.localStorage.setItem('saved', JSON.stringify(saved))
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (saved.length>0){
+    //         window.localStorage.setItem('saved', JSON.stringify(saved))
+    //     }
+    // }, [])
+
+    
 
 
 

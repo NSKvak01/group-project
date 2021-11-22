@@ -30,7 +30,7 @@ const savedReducer = (state,action) =>{
     switch(action.type){
         case "ADD_TO_SAVED_LIST":{
             const {payload:{id, title, price, image, description, heart}} = action
-            const itemFound = state.find(item=>item.id === id)
+            const itemFound = state.saved.find(item=>item.id === id)
             if(!itemFound){
                 return (
                         [...state,
@@ -49,10 +49,10 @@ const savedReducer = (state,action) =>{
         
         case "REMOVE_FROM_SAVED_LIST":{
             const {payload:{id}} = action
-            const itemFound = state.find(item=>item.id === id)
+            const itemFound = state.saved.find(item=>item.id === id)
             if(itemFound){
                 return (
-                        [...state.filter(item=>item.id!==id)
+                        [...state.saved.filter(item=>item.id!==id)
                         ]
                     )
             }

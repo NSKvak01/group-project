@@ -7,14 +7,13 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import { useShoppingCart } from '../context/CartContext';
-import { addToSavedAction } from '../App';
+import { addToSavedAction } from '../redux/savedReducer';
+import { addToCartAction } from '../redux/shoppingCartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 function ItemComponent(props) {
-    const {addItemToCart} = useShoppingCart()
-    const {clothes,} = props
+    const {clothes} = props
     const [clicked, setClicked] = useState(false)
     const dispatch = useDispatch()
     const state = useSelector(state=>state)
@@ -44,7 +43,7 @@ function ItemComponent(props) {
                             </CardContent>
                         </CardActionArea>
                         <CardActions sx={{display:"flex", justifyContent:"space-between"}}>
-                            <Button size="large" color="primary"  style={{fontSize:"16px"}} onClick={()=>addItemToCart({id:clothes.id, title:clothes.title, price:clothes.price, image:clothes.image, description:clothes.description})} >
+                            <Button size="large" color="primary"  style={{fontSize:"16px"}} onClick={()=>{dispatch(addToCartAction({id:clothes.id, title:clothes.title, price:clothes.price, image:clothes.image, description:clothes.description}, "ADD_TO_CART"))}} >
                             Add to Cart
                             </Button>
                             <IconButton aria-label="add to favorites" onClick={()=>{dispatch(addToSavedAction({id:clothes.id, title:clothes.title, price:clothes.price, image:clothes.image, description:clothes.description})); setClicked(true)}}>

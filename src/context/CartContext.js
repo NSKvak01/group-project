@@ -161,5 +161,3 @@ export function CartContextProvider(props) {
         </CartContext.Provider>
     )
 }
-
-
